@@ -1,11 +1,13 @@
-import fs from 'fs';
+import { Users } from "../../models/users-model.js";
 
-export const createUser = (req, res) => {
-  const rawUserData = fs.readFileSync('src/db/users.json');
-  const users = JSON.parse(rawUserData)
-
-  users.push(req.body);
-  fs.writeFileSync('src/db/users.json', JSON.stringify(users));
-
-  res.send("User data received");
+export const createUser = async (req, res) => {
+  try {
+    const userData = await Users.create({
+      name: "AAAA", 
+    });
+    res.status(200).send(userData); 
+  } catch (error) {
+    console.log("error", error);
+    res.status(400).send({ error: "Failed to create user" });
+  }
 };

@@ -1,19 +1,11 @@
-import fs from 'fs';
+import { Users } from "../../models/users-model.js";
 
-export const putUser = (req, res) => {
-
-
-    const rawUserData = fs.readFileSync("src/db/users.json");
-    const users = JSON.parse(rawUserData)
-    users[0].userId = "aaa"
-    fs.writeFileSync("src/db/users.json", JSON.stringify(users))
-  //   res.send(JSON.parse(rawUserData));
-
-  // use.push({
-  //   firstName: "Munkh",
-  //   secondName: "Bat",
-  //   userId: "3",
-  //   password: "1000-7",
-  // });
-  // res.send(users);
-};
+export const putUser = async (req, res) => {
+  const { id } = req.body
+  try {
+    await Users.updateOne({ _id : id } , {name : "Tangina"})
+    res.status(200).send({ message: "User deleted successfully" });
+  } catch (error) {
+    res.status(400).send({ error: "Failed to delete user" });
+  }
+}
