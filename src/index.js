@@ -1,7 +1,6 @@
 import express from "express";
 import { userRouter } from "./routers/user-router.js";
 import mongoose from "mongoose";
-import { Users } from "./models/users-model.js";
 
 // schema ==> model
 // collection ==> table
@@ -27,9 +26,6 @@ const app = express();
 const port = 3000;
 
 app.use(express.json());
-
-// get ==> read
-// post ==> create
 
 app.use("/users", userRouter);
 

@@ -1,13 +1,21 @@
-import { Users } from "../../models/users-model.js";
+import { User } from "../../models/users-model.js";
+import bcrypt from "bcrypt"
 
 export const createUser = async (req, res) => {
+  const { email, password } = req.body;
+
+  const hashedPassword = await bcrypt.hash(password, 10);
+  
+  /// hash 
   try {
-    const userData = await Users.create({
-      name: "AAAA", 
+    const userData = await User.create({
+      email: email,
+      password: hashedPassword,
     });
-    res.status(200).send(userData); 
+    res.status(200).json({ data: userData, success: true });
   } catch (error) {
-    console.log("error", error);
-    res.status(400).send({ error: "Failed to create user" });
+    res
+      .status(500)
+      .send({ success: false, error: `Failed to create user: ${error}` });
   }
 };

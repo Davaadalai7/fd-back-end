@@ -1,18 +1,18 @@
 import express from "express";
-import { getUsers } from "../controller/users/get-user.js";
-import { deleteUser } from "../controller/users/delete-user.js";
-import { putUser } from "../controller/users/put-user.js";
+// import { getUsers } from "../controller/users/get-user.js";
+// import { deleteUser } from "../controller/users/delete-user.js";
+// import { putUser } from "../controller/users/put-user.js";
 import { createUser } from "../controller/users/create-user.js";
-import { loginUser } from "../controller/users/login/login.js";
+// import { loginUser } from "../controller/users/login/login.js";
 
 export const userRouter = express.Router();
 
 userRouter.post("/", createUser);
 
-userRouter.get("/", getUsers);
+// userRouter.get("/", getUsers);
 
-userRouter.put("/", putUser);
+// userRouter.put("/", putUser);
 
-userRouter.delete("/", deleteUser);
+// userRouter.delete("/", deleteUser);
 
-userRouter.post("/login", loginUser);
+// userRouter.post("/login", loginUser);
