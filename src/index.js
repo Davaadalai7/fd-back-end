@@ -1,6 +1,7 @@
 import express from "express";
 import { userRouter } from "./routers/user-router.js";
 import mongoose from "mongoose";
+import { authenticationRouter } from "./routers/authentication-router.js";
 
 // schema ==> model
 // collection ==> table
@@ -28,6 +29,7 @@ const port = 3000;
 app.use(express.json());
 
 app.use("/users", userRouter);
+app.use("/auth", authenticationRouter);
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
