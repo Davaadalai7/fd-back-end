@@ -13,7 +13,6 @@ export const createUser = async (req, res, next) => {
       password: hashedPassword,
     });
     res.status(200).json({ data: userData, success: true });
-    next();
   } catch (error) {
     res
       .status(500)
