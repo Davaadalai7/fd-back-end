@@ -1,10 +1,10 @@
 import { User } from "../../models/users-model.js";
 
 export const deleteUser = async (req, res) => {
-  const { email } = req.body;
+  const { id } = req.body;
 
   try {
-    const user = await User.findOne({ email: email });
+    const user = await User.findOne({ _id: id });
     if (!user) {
       return res.status(404).send({ error: "User not found" });
     }
