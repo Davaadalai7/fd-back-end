@@ -1,18 +1,18 @@
 import { User } from "../../models/users-model.js";
 
 export const getUserById = async (req, res) => {
-  const { email } = req.body;
+  const { _id } = req.body;
 
   try {
-    const userData = await User.findOne({ _id: id });
+    const userData = await User.findOne({ id: _id });
 
     if (!userData) {
-      return res.status(404).json({ message: "User not found" });
+      return res.status(404).json({ message: "User id not found" });
+    } else {
+      res
+        .status(200)
+        .json({ success: true, message: "User found", data: userData });
     }
-
-    res
-      .status(200)
-      .json({ success: true, message: "User found", data: userData });
   } catch (error) {
     res
       .status(500)

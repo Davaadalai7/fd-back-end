@@ -2,6 +2,7 @@ import express from "express";
 import { userRouter } from "./routers/user-router.js";
 import mongoose from "mongoose";
 import { authenticationRouter } from "./routers/authentication-router.js";
+import dotenv from "dotenv";
 
 // schema ==> model
 // collection ==> table
@@ -9,12 +10,11 @@ import { authenticationRouter } from "./routers/authentication-router.js";
 
 // we have some DataBase on MongoDB ==> url ==> connect ==>
 
-const url =
-  "mongodb+srv://skiple7:d3pYgGUYwP0eM5Mu@cluster0.purvf.mongodb.net/test?retryWrites=true&w=majority&appName=Cluster0";
+dotenv.config();
 
 const connectDb = async () => {
   try {
-    await mongoose.connect(url);
+    await mongoose.connect(process.env.DATABASE_CONNECTION_URL);
     console.log("Successfully connected");
   } catch (error) {
     console.log("Error occured", error);
