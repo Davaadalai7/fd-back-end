@@ -1,11 +1,11 @@
 import { User } from "../../models/users-model.js";
 
 export const updateCategoryController = async (req, res) => {
-  const { id, email, address } = req.body;
+  const { id } = req.params;
   try {
-    const updatedUser = await User.findOneAndUpdate(
-      { id },
-      { email: email, address: address },
+    const updatedUser = await User.findByIdAndUpdate(
+      id,
+      { categoryName },
       { new: true }
     );
 
@@ -16,8 +16,9 @@ export const updateCategoryController = async (req, res) => {
     res
       .status(200)
       .send({ message: "User updated successfully", data: updatedUser });
-    console.log("user updated");
+    console.log("User updated successfully");
   } catch (error) {
+    console.error("Error updating user:", error);
     res.status(400).send({ error: "Failed to update user" });
   }
 };

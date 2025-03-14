@@ -1,7 +1,7 @@
 import { Category } from "../../models/category-model.js";
 
 export const deleteCategoryController = async (req, res) => {
-  const { categoryName } = req.body;
+  const { categoryName } = req.params;
 
   try {
     const deleteCategory = await Category.deleteOne({

@@ -1,13 +1,13 @@
 import mongoose from "mongoose";
 
 const foodsSchema = new mongoose.Schema({
-  foodName: { type: String, require: true },
-  price: { type: Number, require: true },
-  image: { type: String, require: true },
+  foodName: { type: String, required: true },
+  price: { type: Number, required: true },
+  image: { type: String, required: true },
   ingredients: { type: String },
-  category: { type: mongoose.type.ObjectId },
-  createdAt: { type: Date },
-  updatedAt: { type: Date },
+  category: { type: mongoose.Schema.Types.ObjectId, ref: "Category" },
+  createdAt: { type: Date, default: Date.now },
+  updatedAt: { type: Date, default: Date.now },
 });
 
-export const Food = mongoose.model("food", foodsSchema);
+export const Food = mongoose.model("Food", foodsSchema);
