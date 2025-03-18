@@ -12,11 +12,3 @@ userRouter.get("/", validateUserId, getUserById);
 userRouter.post("/", createUser);
 userRouter.delete("/", validateUserId, deleteUser);
 userRouter.put("/", validateUserId, updateUserById);
-
-// userRouter.get("/", getUsers);
-
-// userRouter.put("/", putUser);
-
-// userRouter.delete("/", deleteUser);
-
-// userRouter.post("/login", loginUser);
