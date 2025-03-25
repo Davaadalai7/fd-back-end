@@ -1,5 +1,6 @@
 import { User } from "../../models/users-model.js";
 import bcrypt from "bcrypt";
+import { generateToken } from "../../middleware/jwt-auth.js";
 
 export const loginUser = async (req, res) => {
   const { email, password } = req.body;
@@ -15,9 +16,16 @@ export const loginUser = async (req, res) => {
 
       console.log(isMatch);
       if (isMatch) {
-        res.status(200).json({ success: true, message: "Login successful" });
+        const token = generateToken(user);
+        console.log(token);
+        res.status(200).json({
+          success: true,
+          message: "Login successful",
+          token: token,
+          user: user,
+        });
       } else {
-        res.status(400).json({ success: false, error: "Wrong password" });
+        res.status(201).json({ success: false, error: "Wrong password" });
       }
     }
   } catch (error) {
