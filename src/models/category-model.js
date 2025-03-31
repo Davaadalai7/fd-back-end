@@ -7,3 +7,4 @@ const categorysSchema = new mongoose.Schema({
 });
 
 export const Category = mongoose.model("category", categorysSchema);
+
