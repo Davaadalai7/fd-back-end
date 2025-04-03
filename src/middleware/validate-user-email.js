@@ -1,3 +1,5 @@
+import { User } from "../models/users-model.js";
+
 export const validateUserEmail = async (req, res, next) => {
   const { email } = req.body;
 

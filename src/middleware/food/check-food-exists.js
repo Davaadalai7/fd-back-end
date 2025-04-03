@@ -1,3 +1,5 @@
+import { Food } from "../../models/food-model.js";
+
 export const checkFoodExists = async (req, res, next) => {
   const { id } = req.body;
   try {
